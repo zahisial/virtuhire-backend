@@ -113,6 +113,12 @@ CORS_ALLOWED_ORIGINS = os.getenv(
     'http://localhost:3000,http://127.0.0.1:3000'
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
+# CSRF_TRUSTED_ORIGINS
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.railway.app',
+    'https://*.up.railway.app',
+    'https://virtuhire-3.vercel.app',
+]
 
 # ─── STRIPE ───
 STRIPE_SECRET_KEY      = os.getenv('STRIPE_SECRET_KEY', '')
