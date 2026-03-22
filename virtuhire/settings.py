@@ -173,6 +173,6 @@ SESSION_COOKIE_SECURE = True
 
 
     if not DEBUG:
-    CSRF_COOKIE_SECURE = False   # <-- temporarily set to False
+    CSRF_COOKIE_SECURE = True   # <-- temporarily set to False
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_HTTPONLY = False  # optional
