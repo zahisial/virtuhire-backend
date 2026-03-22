@@ -1,1 +1,1 @@
-web: python manage.py collectstatic --noinput && python manage.py migrate && gunicorn virtuhire.wsgi --log-file -
+web: python manage.py collectstatic --noinput && python manage.py migrate && python manage.py shell -c "from accounts.models import User; User.objects.filter(email='admin@virtuhire.ae').exists() or User.objects.create_superuser('admin@virtuhire.ae', 'VirtuHire@2025')" && gunicorn virtuhire.wsgi --log-file -
