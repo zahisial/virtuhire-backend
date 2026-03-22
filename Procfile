@@ -1,1 +1,1 @@
-web: gunicorn virtuhire.wsgi --log-file -
+web: python manage.py migrate && gunicorn virtuhire.wsgi --log-file -
