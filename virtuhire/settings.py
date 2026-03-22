@@ -170,9 +170,9 @@ SESSION_COOKIE_SECURE = True
 
 # In production (when DEBUG=False), enforce secure cookies
 # Security settings for production
-if not DEBUG:
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_SECURE = True
-    # Optional but recommended:
-    CSRF_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_HTTPONLY = True
+
+
+    if not DEBUG:
+    CSRF_COOKIE_SECURE = False   # <-- temporarily set to False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_HTTPONLY = False  # optional
