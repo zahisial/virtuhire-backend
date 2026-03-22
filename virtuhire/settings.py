@@ -113,7 +113,8 @@ CORS_ALLOWED_ORIGINS = os.getenv(
     'http://localhost:3000,http://127.0.0.1:3000'
 ).split(',')
 CORS_ALLOW_CREDENTIALS = True
-# CSRF_TRUSTED_ORIGINS
+
+# ─── CSRF ───
 CSRF_TRUSTED_ORIGINS = [
     'https://*.railway.app',
     'https://*.up.railway.app',
@@ -158,21 +159,13 @@ USE_TZ        = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# ─── SECURITY ───
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
+
 # ─── DATABASE URL (Railway) ───
 import dj_database_url
 if os.getenv('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
-
-    # For production, ensure cookies are sent over HTTPS
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-# Also, if you're using a domain, set SESSION_COOKIE_DOMAIN and CSRF_COOKIE_DOMAIN appropriately (not necessary for Railway)
-
-# In production (when DEBUG=False), enforce secure cookies
-# Security settings for production
-
-
-    if not DEBUG:
-    CSRF_COOKIE_SECURE = True   # <-- temporarily set to False
-    SESSION_COOKIE_SECURE = False
-    CSRF_COOKIE_HTTPONLY = False  # optional
