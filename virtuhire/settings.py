@@ -162,3 +162,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import dj_database_url
 if os.getenv('DATABASE_URL'):
     DATABASES['default'] = dj_database_url.parse(os.getenv('DATABASE_URL'))
+
+    # For production, ensure cookies are sent over HTTPS
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+# Also, if you're using a domain, set SESSION_COOKIE_DOMAIN and CSRF_COOKIE_DOMAIN appropriately (not necessary for Railway)
+
+# In production (when DEBUG=False), enforce secure cookies
+# Security settings for production
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    # Optional but recommended:
+    CSRF_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_HTTPONLY = True
