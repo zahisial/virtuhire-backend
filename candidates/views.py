@@ -30,6 +30,7 @@ def apply(request):
 
 
 @api_view(['GET'])
+@permission_classes([permissions.AllowAny])   # ← added this line
 def browse(request):
     """
     Clients browse approved candidates.
